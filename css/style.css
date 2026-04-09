@@ -1,0 +1,217 @@
+body {
+    background: linear-gradient(135deg, #e666ea 0%, #f0ed56 100%);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+
+.text{
+  position: absolute; /* Ограничивает область видимости текста */
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  
+}
+
+
+.text {
+    position: absolute; /* Или absolute, fixed */
+    z-index: -1;       /* Значение выше, чем у остальных элементов */
+    font-size: 30px;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.13);
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.horizontal-container {
+    display: flex;
+    overflow-x: auto;
+    /* Включаем горизонтальный скролл */
+    overflow-y: hidden;
+    height: 100vh;
+    scroll-snap-type: x mandatory;
+    /* Опционально: "прилипание" к краям */
+}
+
+.content-column {
+    flex: 0 0 auto;
+    /* Не дает колонке сжиматься */
+    width: 30vw;
+    /* Ширина одной колонки (80% экрана) */
+    height: 100%;
+    padding: 40px;
+    box-sizing: border-box;
+    scroll-snap-align: center;
+
+    /* Настройка текста внутри колонки */
+    column-width: 300px;
+    /* Если хочешь, чтобы текст внутри сам разбивался на газетные колонки */
+    column-gap: 40px;
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 3rem;
+    margin: 50px 25px 20px;
+    
+}
+
+.h7 {
+    margin: 0 80px 20px;
+    color: #333;
+}
+
+.h8{
+    
+    margin: 0 180px 20px;
+    color: #333;
+}
+
+.h9 {
+    margin: 0 100px 20px;
+    color: #333;
+}
+.h1-button {
+    display: inline-block;
+    text-decoration: none;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 16px;
+    padding: 18px 24px;
+    backdrop-filter: blur(5px);
+    transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); 
+}
+
+.h1-button:hover,
+.h1-button:focus {
+    background: rgba(255, 255, 255, 0.3);
+    color: #000000;
+    transform: translateY(-3px);
+}
+
+p {
+    line-height: 1.8;
+    font-size: 32px;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.35), 0 0 1px rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.5px;
+    margin: 20px 0;
+    margin-top: 450px;
+}
+
+.p3 {
+    margin: 450px 100px 20px;
+}
+
+.p1{
+    margin: 450px 40px 0px;
+}
+
+.p2 {
+    margin: 450px 70px 20px;
+}
+
+/* Анимация для текста */
+p {
+    max-height: 300px;
+    transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+p.hidden {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.photos-img {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.photos-img:hover {
+    transform: scale(1.05);
+}
+
+.btn6 {
+    position: fixed;
+    top: 20px;
+    left: 40px;
+    width: auto;
+    max-width: 150px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    color: white;
+    padding: 12px 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    font-size: 14px;
+}
+.btn6:hover, .btn6:focus {
+    transition: 0.3s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.2); /* Slightly more opaque on hover */
+    color: rgb(0, 0, 0);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+    backdrop-filter: blur(15px); /* Increase blur on hover */
+    -webkit-backdrop-filter: blur(15px);
+}
+
+
+/* Gallery Styles */
+.photos-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    margin-top: -650px;
+  
+    animation: slideUp 1s ease-out;
+    
+}
+
+.photos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 30px;
+    width: 100%;
+    max-width: 1800px;
+    margin: 0 auto;
+}
+
+.photos-img {
+       display: block;
+    width: 80%;
+    height: 350px; /* Можно немного увеличить высоту для красоты */
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, filter 0.3s ease;
+    cursor: pointer;
+}
+
+.photos-img:hover {
+    transform: scale(1.05) translateY(-10px);
+    filter: brightness(1.1) drop-shadow(0 15px 35px rgba(0, 0, 0, 0.4));
+    animation: slideUp 0.5s ease-out;
+}
+
