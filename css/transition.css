@@ -1,34 +1,133 @@
 body {
-    background: linear-gradient(135deg, #e666ea 0%, #f0ed56 100%);
     margin: 0;
     padding: 0;
     min-height: 100vh;
-    
+    /* Твой исходный розово-желтый градиент */
+    background: linear-gradient(135deg, #e666ea 0%, #f0ed56 100%);
+    background-attachment: fixed;
+    font-family: sans-serif;
+    overflow-x: hidden;
+    position: relative;
 }
-.text{
-  position: absolute; /* Ограничивает область видимости текста */
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
-  
+
+.no-transition {
+    transition: none !important;
+}
+.no-transition::before {
+    transition: none !important;
+}
+
+/* Слой для темной темы (плавное появление) */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #5a1791 0%, #19073b 100%);
+    opacity: 0;
+    transition: opacity 1s ease;
+    z-index: -1;
+}
+
+/* Активация темной темы */
+body.dark-mode::before {
+    opacity: 1;
+}
+
+.theme-btn {
+    position: fixed;
+    top: 20px;
+    left: 40px;
+    z-index: 10005;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid #000; /* Черная рамка для светлой темы */
+    background: rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.mode-icon {
+    width: 24px;
+    height: 24px;
+    stroke: #000; /* Цвет иконки — черный */
+}
+
+/* Стили для темной темы */
+body.dark-mode .theme-btn {
+    border-color: #fff;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .mode-icon {
+    stroke: #fff; /* Цвет иконки — белый */
+}
+/* Эффект при наведении */
+.theme-btn:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 1);
+}
+
+
+/* 3. ОБЩИЕ СТИЛИ ПАНЕЛЕЙ */
+.sidebar {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 10px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+}
+
+.trigger {
+    position: absolute;
+    width: 40px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    font-size: 24px;
+}
+
+.text {
+    position: absolute;
+    /* Ограничивает область видимости текста */
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+
 }
 
 
 .text {
-    position: absolute; /* Или absolute, fixed */
-    z-index: -1;       /* Значение выше, чем у остальных элементов */
+    position: absolute;
+    /* Или absolute, fixed */
+    z-index: -1;
+    /* Значение выше, чем у остальных элементов */
     font-size: 30px;
-  font-weight: bold;
-  color: rgba(255, 255, 255, 0.288);
-  width: 100vw;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.12);
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
 /* Gallery Styles */
@@ -63,43 +162,50 @@ body {
     filter: brightness(1.1) drop-shadow(0 15px 35px rgba(0, 0, 0, 0.4));
 }
 
-.btn1,.btn2,.btn3,.btn4,.btn5 {
+.btn1,
+.btn2,
+.btn3,
+.btn4,
+.btn5 {
     font-family: 'Arial', sans-serif;
     font-size: 16px;
     cursor: pointer;
     outline: none;
 }
+
 .btn1 {
-    
- max-width: 1000px;
- width: 30%;
- background: rgba(109, 124, 212, 0.6);
-  border:  solid  rgb(121, 53, 209);
-  border-radius: 30px;
-  padding: 20px 20px;
-  transition: all 0.2s ease;
-  margin-bottom: 35px;
+
+    max-width: 1000px;
+    width: 30%;
+    background: rgba(109, 124, 212, 0.6);
+    border: solid rgb(121, 53, 209);
+    border-radius: 30px;
+    padding: 20px 20px;
+    transition: all 0.2s ease;
+    margin-bottom: 35px;
 }
 
-.btn1:hover,.btn1:focus {
+.btn1:hover,
+.btn1:focus {
     transition: 0.5s ease;
     border-color: rgb(255, 251, 253);
 
 }
 
 .btn2 {
- max-width: 1100px;
- width: 10%;
- background: rgba(188, 58, 214, 0.6);
- border: solid;
-  border-radius: 30px;
-  padding: 20px 20px;
-  box-shadow: 0 25px 45px -12px rgba(209, 18, 136, 0.2);
-  transition: all 0.2s ease;
-   margin-bottom: 35px;
+    max-width: 1100px;
+    width: 10%;
+    background: rgba(188, 58, 214, 0.6);
+    border: solid;
+    border-radius: 30px;
+    padding: 20px 20px;
+    box-shadow: 0 25px 45px -12px rgba(209, 18, 136, 0.2);
+    transition: all 0.2s ease;
+    margin-bottom: 35px;
 }
 
-.btn2:hover,.btn2:focus {
+.btn2:hover,
+.btn2:focus {
     transition: 0.2s ease-in-out;
     background-color: green;
     color: rgb(124, 35, 224);
@@ -108,17 +214,18 @@ body {
 }
 
 .btn3 {
-    
- max-width: 1000px;
- width: 30%;
- background: rgba(255, 255, 255, 0.6);
-  border:  solid  rgb(126, 123, 124);
-  padding: 20px 20px;
-  transition: all 0.2s ease;
-  margin-bottom: 35px;
+
+    max-width: 1000px;
+    width: 30%;
+    background: rgba(255, 255, 255, 0.6);
+    border: solid rgb(126, 123, 124);
+    padding: 20px 20px;
+    transition: all 0.2s ease;
+    margin-bottom: 35px;
 }
 
-.btn3:hover,.btn3:focus {
+.btn3:hover,
+.btn3:focus {
     transition: 0.4s ease-in-out;
     background-color: rgb(0, 0, 0);
     color: aliceblue;
@@ -127,54 +234,61 @@ body {
 }
 
 .btn4 {
-    
- max-width: 1000px;
- width: 30%;
- background: rgba(0, 0, 0, 0.6);
-  border:  solid  rgb(0, 0, 0);
-  color: aliceblue;
-  padding: 20px 20px;
-  transition: all 0.2s ease;
-  margin-bottom: 35px;
+
+    max-width: 1000px;
+    width: 30%;
+    background: rgba(0, 0, 0, 0.6);
+    border: solid rgb(0, 0, 0);
+    color: aliceblue;
+    padding: 20px 20px;
+    transition: all 0.2s ease;
+    margin-bottom: 35px;
 }
 
-.btn4:hover,.btn4:focus {
+.btn4:hover,
+.btn4:focus {
     transition: 0.4s ease-in-out;
     background-color: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
     border-color: black;
     border-style: dotted
-
 }
 
 .btn5 {
     max-width: 1000px;
     width: 30%;
-    background: rgba(255, 255, 255, 0.1); /* Semi-transparent white for glass effect */
+    background: rgba(255, 255, 255, 0.1);
+    /* Semi-transparent white for glass effect */
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 15px;
     color: white;
     padding: 20px 20px;
     transition: all 0.3s ease;
-    margin-bottom: 35px; 
+    margin-bottom: 35px;
     font-weight: bold;
     text-transform: uppercase;
-    backdrop-filter: blur(10px); /* Blur effect for glass */
-    -webkit-backdrop-filter: blur(10px); /* Safari support */
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* Subtle shadow for depth */
+    backdrop-filter: blur(10px);
+    /* Blur effect for glass */
+    -webkit-backdrop-filter: blur(10px);
+    /* Safari support */
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    /* Subtle shadow for depth */
     display: inline-block;
     text-decoration: none;
     cursor: pointer;
     text-align: center;
 }
 
-.btn5:hover, .btn5:focus {
+.btn5:hover,
+.btn5:focus {
     transition: 0.3s ease-in-out;
-    background-color: rgba(255, 255, 255, 0.2); /* Slightly more opaque on hover */
+    background-color: rgba(255, 255, 255, 0.2);
+    /* Slightly more opaque on hover */
     color: rgb(0, 0, 0);
     border-color: rgba(255, 255, 255, 0.3);
     transform: scale(1.05);
-    backdrop-filter: blur(15px); /* Increase blur on hover */
+    backdrop-filter: blur(15px);
+    /* Increase blur on hover */
     -webkit-backdrop-filter: blur(15px);
 }
 
@@ -191,6 +305,7 @@ body {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -215,9 +330,12 @@ body {
 }
 
 @keyframes photoGlow {
-    0%, 100% {
+
+    0%,
+    100% {
         box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
     }
+
     50% {
         box-shadow: 0 15px 45px rgba(255, 255, 255, 0.2);
     }
@@ -266,48 +384,52 @@ nav {
 }
 
 .music-sidebar {
-  position: fixed;
-  left: -634px; /* Прячем плеер полностью (ширина 614 + отступы) */
-  top: 50%;
-  transform: translateY(-50%);
-  transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 10000;
-  display: flex;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.8); /* Фон подложки плеера */
-  padding: 10px;
-  border-radius: 0 15px 15px 0;
+    position: fixed;
+    left: -634px;
+    /* Прячем плеер полностью (ширина 614 + отступы) */
+    top: 50%;
+    transform: translateY(-50%);
+    transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.8);
+    /* Фон подложки плеера */
+    padding: 10px;
+    border-radius: 0 15px 15px 0;
 }
 
 /* Состояние, когда плеер выдвинут */
 .music-sidebar.active {
-  left: 0;
+    left: 0;
 }
 
 /* Кнопка-язычок */
 .sidebar-trigger {
-  position: absolute;
-  right: -40px; /* Выносим кнопку за пределы скрытого блока */
-  width: 40px;
-  height: 60px;
-  background: #ffdb4d; /* Желтый цвет Яндекса (или любой ваш) */
-  color: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  border-radius: 0 10px 10px 0;
-  font-size: 20px;
-  box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+    position: absolute;
+    right: -40px;
+    /* Выносим кнопку за пределы скрытого блока */
+    width: 40px;
+    height: 60px;
+    background: #ffdb4d;
+    /* Желтый цвет Яндекса (или любой ваш) */
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 0 10px 10px 0;
+    font-size: 20px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
 }
 
 /* Поворот стрелки при активации */
 .music-sidebar.active .sidebar-trigger span {
-  transform: rotate(180deg);
+    transform: rotate(180deg);
 }
 
 .sidebar-trigger span {
-  transition: transform 0.5s;
+    transition: transform 0.5s;
 }
 
 footer {
@@ -335,67 +457,92 @@ footer a {
     transition: color 0.3s ease;
 }
 
-footer p{
+footer p {
     font-size: 9px;
 
 }
+
 footer a:hover {
     color: #f0ed56;
 }
 
 /* Общие стили для боковых панелей */
 .sidebar {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 10000;
-  display: flex;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.9);
-  padding: 15px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 .trigger {
-  position: absolute;
-  width: 40px;
-  height: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 20px;
-  color: white;
+    position: absolute;
+    width: 40px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 20px;
+    color: white;
 }
 
 /* Специфика для ЛЕВОЙ стороны (Музыка) */
 .left-sidebar {
-  left: -644px; /* Скрываем (ширина плеера 614 + отступы) */
-  border-radius: 0 15px 15px 0;
+    left: -644px;
+    /* Скрываем (ширина плеера 614 + отступы) */
+    border-radius: 0 15px 15px 0;
 }
-.left-sidebar.active { left: 0; }
+
+.left-sidebar.active {
+    left: 0;
+}
+
 .left-sidebar .trigger {
-  right: -40px;
-  background: #ffdb4d; /* Желтый Яндекса */
-  border-radius: 0 10px 10px 0;
-  color: black;
+    right: -40px;
+    background: #ffdb4d;
+    /* Желтый Яндекса */
+    border-radius: 0 10px 10px 0;
+    color: black;
 }
-.left-sidebar.active .trigger span { transform: rotate(180deg); }
+
+.left-sidebar.active .trigger span {
+    transform: rotate(180deg);
+}
 
 /* Специфика для ПРАВОЙ стороны (3D Модель) */
 .right-sidebar {
-  right: -644px; /* Скрываем (ширина модели 600 + отступы) */
-  border-radius: 15px 0 0 15px;
+    right: -644px;
+    /* Скрываем (ширина модели 600 + отступы) */
+    border-radius: 15px 0 0 15px;
 }
-.right-sidebar.active { right: 0; }
+
+.right-sidebar.active {
+    right: 0;
+}
+
 .right-sidebar .trigger {
-  left: -40px;
-  background: #1caad9; /* Голубой Sketchfab */
-  border-radius: 10px 0 0 10px;
+    left: -40px;
+    background: #1caad9;
+    /* Голубой Sketchfab */
+    border-radius: 10px 0 0 10px;
 }
-.right-sidebar .trigger span { transform: rotate(180deg); }
-.right-sidebar.active .trigger span { transform: rotate(0deg); }
+
+.right-sidebar .trigger span {
+    transform: rotate(180deg);
+}
+
+.right-sidebar.active .trigger span {
+    transform: rotate(0deg);
+}
 
 /* Чтобы стрелки плавно крутились */
-.trigger span { transition: transform 0.4s; display: inline-block; }
+.trigger span {
+    transition: transform 0.4s;
+    display: inline-block;
+}
