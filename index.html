@@ -124,9 +124,8 @@
 
     function toggleTheme() {
       const body = document.body;
-      const moon = document.getElementById('moon-icon');
       const sun = document.getElementById('sun-icon');
-      
+      const moon = document.getElementById('moon-icon');
 
       body.classList.toggle('dark-mode');
 
@@ -162,26 +161,32 @@
 
     // ПРОВЕРКА ПРИ ЗАГРУЗКЕ (чтобы тема не моргала)
     (function () {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'dark') {
-        // Добавляем класс, который отключает анимацию
-        document.body.classList.add('no-transition');
+    // 1. Пытаемся достать сохраненную тему
+    const savedTheme = localStorage.getItem('theme');
+    
+    // 2. Если в памяти НИЧЕГО нет, ставим светлую (light)
+    if (!savedTheme) {
+        localStorage.setItem('theme', 'light');
+        return; // Выходим из функции, оставляя всё как есть
+    }
+
+    // 3. Если пользователь САМ ранее выбрал темную, только тогда включаем её
+    if (savedTheme === 'dark') {
+        document.body.classList.add('no-transition'); // Отключаем анимацию при загрузке
         document.body.classList.add('dark-mode');
-
+        
         window.addEventListener('DOMContentLoaded', () => {
-          const sun = document.getElementById('sun-icon');
-          const moon = document.getElementById('moon-icon');
-          if (sun) sun.style.display = 'none';
-          if (moon) moon.style.display = 'block';
-
-          // Ждем крошечное мгновение и возвращаем анимацию обратно
-          // Теперь при клике на кнопку она будет работать, а при загрузке — нет
-          setTimeout(() => {
-            document.body.classList.remove('no-transition');
-          }, 100);
+            const sun = document.getElementById('sun-icon');
+            const moon = document.getElementById('moon-icon');
+            if(sun) sun.style.display = 'none';
+            if(moon) moon.style.display = 'block';
+            
+            setTimeout(() => {
+                document.body.classList.remove('no-transition');
+            }, 100);
         });
-      }
-    })();
+    }
+})();
 
   </script>
 </body>
