@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ILOVEYOU</title>
     <link rel="stylesheet" href="css/transition.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
 
 
@@ -28,22 +28,32 @@
         </div>
     </nav>
 
- <div class="music-sidebar" id="musicSidebar">
-  <!-- Кнопка-стрелка -->
-  <div class="sidebar-trigger" onclick="toggleSidebar()">
-    <span>&#10148;</span> <!-- Символ стрелки -->
+<!-- ЛЕВАЯ ПАНЕЛЬ: МУЗЫКА -->
+<div class="sidebar left-sidebar" id="musicSidebar">
+  <div class="trigger" onclick="toggleMusic()">
+    <span>&#10148;</span>
   </div>
-  
-  <!-- Ваш плеер -->
   <iframe frameborder="0" allow="clipboard-write" style="border:none;width:614px;height:556px;" width="614" height="556" src="https://music.yandex.ru/iframe/playlist/guakamole123456/1021"></iframe>
 </div>
-<script>
-      function toggleSidebar() {
-        const sidebar = document.getElementById('musicSidebar');
-        sidebar.classList.toggle('active');
-      }
-    </script>
 
+<!-- ПРАВАЯ ПАНЕЛЬ: SKETCHFAB -->
+<div class="sidebar right-sidebar" id="modelSidebar">
+  <div class="trigger" onclick="toggleModel()">
+    <span>&#10148;</span>
+  </div>
+  <div class="sketchfab-embed-wrapper">
+    <iframe title="bat against zombies" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/46820b5f17ca416ab5a95007fa5bba19/embed?autospin=1" style="width: 614px; height: 556px; border: none;"></iframe>
+  </div>
+</div>
+
+<script>function toggleMusic() {
+  document.getElementById('musicSidebar').classList.toggle('active');
+}
+
+function toggleModel() {
+  document.getElementById('modelSidebar').classList.toggle('active');
+}
+</script>
 </body>
 <footer>
    
@@ -51,3 +61,4 @@
 <a href="https://sun9-17.userapi.com/s/v1/ig2/PrhStwHHIyQLbVj9v_IptTAoGg5Zyx0VafOkkw4tIVl9FxGwfwOZTks2BoZd7VtOSuNlsOx80s__7vQoOziSIISj.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1170x1170&from=bu&u=BXR7bxnIUvgqr0fWR6Xx_kNo6Ua7fWeoUw8wnB_9JTE&cs=1170x0">Пасхалко</a>
 </footer>
 </html>
+
