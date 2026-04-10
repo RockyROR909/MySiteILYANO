@@ -36,6 +36,8 @@ body.dark-mode::before {
     opacity: 1;
 }
 
+
+
 .theme-btn {
     position: fixed;
     top: 20px;
@@ -434,9 +436,8 @@ nav {
 footer {
     position: fixed;
     bottom: 0;
-    left: 20px;
+    left: 0px;
     right: 0;
-    gap: 20px;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -548,49 +549,87 @@ footer a:hover {
 
 
 @media (max-width: 768px) {
-    /* 1. Делаем панели на весь экран */
-    .left-sidebar, .right-sidebar {
-        width: 100%;
-        left: -100% !important; /* Прячем полностью за край */
+    /* ЛЕВАЯ ПАНЕЛЬ (Музыка) */
+    .left-sidebar {
+        width: 85vw !important;
+        /* Мы прячем панель на её ширину (85vw) + запас на padding (обычно 10-20px) */
+        left: calc(-85vw - 20px) !important; 
         right: auto !important;
-        padding: 0;
+        padding: 10px !important; /* Убедитесь, что padding фиксирован */
+        transition: left 0.5s ease !important;
     }
 
-    /* Когда открыты — занимают всё пространство */
-    .left-sidebar.active, .right-sidebar.active {
+    .left-sidebar.active {
         left: 0 !important;
+    }
+
+    /* Настройка кнопки музыки (триггера), чтобы она не уезжала */
+    .left-sidebar .trigger {
+        position: absolute;
+        /* Кнопка должна "торчать" наружу ровно на свою ширину */
+        right: -50px !important; 
+        width: 50px !important;
+        height: 70px !important;
+        background: #ffdb4d !important;
+        border-radius: 0 10px 10px 0;
+        display: flex !important;
+        visibility: visible !important;
+    }
+
+
+    /* ПРАВАЯ ПАНЕЛЬ (Скетчфаб) — переделываем только на right */
+    .right-sidebar {
+        width: 85vw !important;
+        right: -85vw !important; 
+        left: auto !important; /* Убираем конфликт с left */
+        padding: 0 !important;
+        transition: right 0.5s ease !important; /* Плавность здесь! */
+    }
+    .right-sidebar.active {
         right: 0 !important;
     }
 
-    /* Подгоняем размеры плеера и 3D-модели */
+    /* Кнопка скетчфаба */
+    .right-sidebar .trigger {
+        position: absolute;
+        left: -50px !important; 
+        width: 50px !important;
+        height: 70px !important;
+        background: #1caad9 !important;
+        border-radius: 10px 0 0 10px;
+        display: flex !important;
+        visibility: visible !important;
+    }
+
+    /* Общие настройки для iframe внутри */
     .sidebar iframe, 
     .sketchfab-embed-wrapper iframe {
-        width: 100vw !important; /* Ширина на весь экран телефона */
-        height: 60vh !important; /* Высота чуть больше половины экрана */
+        width: 100% !important;
+        height: 400px !important;
     }
 
-    /* Корректируем триггеры (стрелки), чтобы в них было легче попасть пальцем */
-    .trigger {
-        width: 50px;
-        height: 80px;
-        right: -50px !important; /* Для левой панели */
-    }
-    
-    .right-sidebar .trigger {
-        left: -50px !important; /* Для правой панели */
-    }
-
-    /* 2. Текст (p1, p2, p3) */
+    /* Текст и остальное */
     p {
-        font-size: 20px !important; /* Уменьшаем шрифт, чтобы он не был гигантским */
-        margin-left: 20px !important;
-        margin-right: 20px !important;
+        font-size: 20px !important;
+        margin: 20px !important;
     }
     
-    /* 3. Кнопка смены темы */
     .theme-btn {
         width: 45px;
         height: 45px;
-        left: 10px; /* Прижимаем к углу, чтобы не мешала */
+        left: 10px;
+    }
+
+    .profile-photo {
+        position: fixed;
+        top: 100px;
+        width: 250px;
+        height: 250px;
+    }
+
+    .btn5 {
+        position: fixed;
+        top: 400px;
+        width: 50%;
     }
 }

@@ -153,6 +153,24 @@
       }
     }
 
+    // Закрытие панелей при клике вне их области (для мобильных)
+    window.addEventListener('click', function (e) {
+      if (window.innerWidth <= 768) {
+        const modelSidebar = document.getElementById('modelSidebar');
+        const musicSidebar = document.getElementById('musicSidebar');
+
+        // Закрываем модель, если кликнули мимо
+        if (modelSidebar.classList.contains('active') && !modelSidebar.contains(e.target)) {
+          modelSidebar.classList.remove('active');
+        }
+
+        // Закрываем музыку, если кликнули мимо
+        if (musicSidebar.classList.contains('active') && !musicSidebar.contains(e.target)) {
+          musicSidebar.classList.remove('active');
+        }
+      }
+    });
+
     // ПРОВЕРКА ПРИ ЗАГРУЗКЕ (чтобы тема не моргала)
     (function () {
       const savedTheme = localStorage.getItem('theme');
@@ -175,6 +193,7 @@
         });
       }
     })();
+
   </script>
 </body>
 <footer>
