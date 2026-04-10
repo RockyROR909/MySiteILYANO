@@ -25,7 +25,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #5a1791 0%, #19073b 100%);
+    background: linear-gradient(135deg, #5a1791 0%, #0e0422 100%);
     opacity: 0;
     transition: opacity 1s ease;
     z-index: -1;
@@ -35,6 +35,12 @@ body::before {
 body.dark-mode::before {
     opacity: 1;
 }
+
+article {
+min-height: 1000px;
+}
+
+
 
 .theme-btn {
     position: fixed;
@@ -93,13 +99,17 @@ body.dark-mode .mode-icon {
 .text {
     position: absolute; /* Или absolute, fixed */
     z-index: -1;       /* Значение выше, чем у остальных элементов */
-    font-size: 30px;
+    font-size: 27px;
   font-weight: bold;
   color: rgba(255, 255, 255, 0.12);
   width: 100vw;
   height: 100vh;
   margin: 0;
   padding: 0;
+}
+
+div {
+    min-width: none;
 }
 
 .horizontal-container {
@@ -175,18 +185,25 @@ p {
     font-size: 32px;
     color: rgb(255, 255, 255);
     font-weight: 600;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.35), 0 0 1px rgba(255, 255, 255, 0.5);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.35);
     letter-spacing: 0.5px;
-    margin: 20px 0;
-    margin-top: 450px;
+    
+    /* Новая логика анимации */
+    display: grid;
+    grid-template-rows: 1fr; /* Разрешаем занимать всё место */
+    opacity: 1;
+    transition: grid-template-rows 0.7s ease, opacity 0.5s ease, margin 0.5s ease;
+    overflow: visible; /* Убираем обрезку */
+    margin-top: 50px; /* Адекватный отступ от картинки */
 }
-
 .p3 {
     margin: 450px 100px 20px;
+   
 }
 
 .p1{
     margin: 450px 40px 0px;
+    
 }
 
 .p2 {
@@ -194,17 +211,15 @@ p {
 }
 
 /* Анимация для текста */
-p {
-    max-height: 300px;
-    transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
 
+/* Скрытое состояние */
 p.hidden {
-    max-height: 0;
+    grid-template-rows: 0fr; /* Схлопываем в ноль */
     opacity: 0;
-    overflow: hidden;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    overflow: hidden; /* Обрезаем только когда скрыто */
 }
-
 .photos-img {
     cursor: pointer;
     transition: transform 0.2s ease;
@@ -284,4 +299,5 @@ p.hidden {
     filter: brightness(1.1) drop-shadow(0 15px 35px rgba(0, 0, 0, 0.4));
     animation: slideUp 0.5s ease-out;
 }
+
 

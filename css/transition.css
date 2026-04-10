@@ -25,7 +25,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #5a1791 0%, #19073b 100%);
+    background: linear-gradient(135deg, #5a1791 0%, #0e0422 100%);
     opacity: 0;
     transition: opacity 1s ease;
     z-index: -1;
@@ -121,7 +121,6 @@ body.dark-mode .mode-icon {
     /* Или absolute, fixed */
     z-index: -1;
     /* Значение выше, чем у остальных элементов */
-    font-size: 30px;
     font-weight: bold;
     color: rgba(255, 255, 255, 0.12);
     width: 100vw;
@@ -545,4 +544,53 @@ footer a:hover {
 .trigger span {
     transition: transform 0.4s;
     display: inline-block;
+}
+
+
+@media (max-width: 768px) {
+    /* 1. Делаем панели на весь экран */
+    .left-sidebar, .right-sidebar {
+        width: 100%;
+        left: -100% !important; /* Прячем полностью за край */
+        right: auto !important;
+        padding: 0;
+    }
+
+    /* Когда открыты — занимают всё пространство */
+    .left-sidebar.active, .right-sidebar.active {
+        left: 0 !important;
+        right: 0 !important;
+    }
+
+    /* Подгоняем размеры плеера и 3D-модели */
+    .sidebar iframe, 
+    .sketchfab-embed-wrapper iframe {
+        width: 100vw !important; /* Ширина на весь экран телефона */
+        height: 60vh !important; /* Высота чуть больше половины экрана */
+    }
+
+    /* Корректируем триггеры (стрелки), чтобы в них было легче попасть пальцем */
+    .trigger {
+        width: 50px;
+        height: 80px;
+        right: -50px !important; /* Для левой панели */
+    }
+    
+    .right-sidebar .trigger {
+        left: -50px !important; /* Для правой панели */
+    }
+
+    /* 2. Текст (p1, p2, p3) */
+    p {
+        font-size: 20px !important; /* Уменьшаем шрифт, чтобы он не был гигантским */
+        margin-left: 20px !important;
+        margin-right: 20px !important;
+    }
+    
+    /* 3. Кнопка смены темы */
+    .theme-btn {
+        width: 45px;
+        height: 45px;
+        left: 10px; /* Прижимаем к углу, чтобы не мешала */
+    }
 }
