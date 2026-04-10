@@ -343,4 +343,59 @@ footer a:hover {
     color: #f0ed56;
 }
 
+/* Общие стили для боковых панелей */
+.sidebar {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.9);
+  padding: 15px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
 
+.trigger {
+  position: absolute;
+  width: 40px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 20px;
+  color: white;
+}
+
+/* Специфика для ЛЕВОЙ стороны (Музыка) */
+.left-sidebar {
+  left: -644px; /* Скрываем (ширина плеера 614 + отступы) */
+  border-radius: 0 15px 15px 0;
+}
+.left-sidebar.active { left: 0; }
+.left-sidebar .trigger {
+  right: -40px;
+  background: #ffdb4d; /* Желтый Яндекса */
+  border-radius: 0 10px 10px 0;
+  color: black;
+}
+.left-sidebar.active .trigger span { transform: rotate(180deg); }
+
+/* Специфика для ПРАВОЙ стороны (3D Модель) */
+.right-sidebar {
+  right: -644px; /* Скрываем (ширина модели 600 + отступы) */
+  border-radius: 15px 0 0 15px;
+}
+.right-sidebar.active { right: 0; }
+.right-sidebar .trigger {
+  left: -40px;
+  background: #1caad9; /* Голубой Sketchfab */
+  border-radius: 10px 0 0 10px;
+}
+.right-sidebar .trigger span { transform: rotate(180deg); }
+.right-sidebar.active .trigger span { transform: rotate(0deg); }
+
+/* Чтобы стрелки плавно крутились */
+.trigger span { transition: transform 0.4s; display: inline-block; }
