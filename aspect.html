@@ -131,12 +131,18 @@
             const paragraphElement = document.querySelector(pair.paragraph);
 
             if (imageElement && paragraphElement) {
-                imageElement.addEventListener('click', function () {
-                    // Плавно показываем/скрываем текущий текст
-                    paragraphElement.classList.toggle('hidden');
-                });
+        imageElement.addEventListener('click', function () {
+            // ТОЛЬКО ДЛЯ МОБИЛОК: выравниваем текст по высоте картинки
+            if (window.innerWidth <= 768) {
+                // Берем координаты картинки и передаем их тексту
+                const topPos = imageElement.offsetTop;
+                paragraphElement.style.top = topPos + "px";
             }
+            
+            paragraphElement.classList.toggle('hidden');
         });
+    }
+});
 
             function toggleTheme() {
       const body = document.body;

@@ -13,6 +13,7 @@ body {
 .no-transition {
     transition: none !important;
 }
+
 .no-transition::before {
     transition: none !important;
 }
@@ -21,9 +22,13 @@ body {
 body::after {
     content: "";
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: linear-gradient(135deg, #e666ea 0%, #f0ed56 100%);
-    z-index: -2; /* Самый нижний слой */
+    z-index: -2;
+    /* Самый нижний слой */
     display: block;
 }
 
@@ -48,7 +53,7 @@ body.dark-mode::before {
 }
 
 article {
-min-height: 1000px;
+    min-height: 1000px;
 }
 
 
@@ -62,7 +67,8 @@ min-height: 1000px;
     height: 50px;
     cursor: pointer;
     border-radius: 50%;
-    border: 2px solid #000; /* Черная рамка для светлой темы */
+    border: 2px solid #000;
+    /* Черная рамка для светлой темы */
     background: rgba(255, 255, 255, 0.5);
     display: flex;
     align-items: center;
@@ -73,7 +79,8 @@ min-height: 1000px;
 .mode-icon {
     width: 24px;
     height: 24px;
-    stroke: #000; /* Цвет иконки — черный */
+    stroke: #000;
+    /* Цвет иконки — черный */
 }
 
 /* Стили для темной темы */
@@ -83,8 +90,10 @@ body.dark-mode .theme-btn {
 }
 
 body.dark-mode .mode-icon {
-    stroke: #fff; /* Цвет иконки — белый */
+    stroke: #fff;
+    /* Цвет иконки — белый */
 }
+
 /* Эффект при наведении */
 .theme-btn:hover {
     transform: scale(1.1);
@@ -94,22 +103,28 @@ body.dark-mode .mode-icon {
 
 
 .background-overlay {
-    position: fixed; /* Чтобы фон не дергался при скролле */
+    position: fixed;
+    /* Чтобы фон не дергался при скролле */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; /* За всеми элементами */
+    z-index: -1;
+    /* За всеми элементами */
     overflow: hidden;
-    pointer-events: none; /* Пропускает клики сквозь себя */
+    pointer-events: none;
+    /* Пропускает клики сквозь себя */
 }
 
 .scrolling-content {
     display: flex;
-    flex-direction: column; /* Текст идет строками вниз */
-    gap: 20px; /* Расстояние между строками */
+    flex-direction: column;
+    /* Текст идет строками вниз */
+    gap: 20px;
+    /* Расстояние между строками */
     color: rgba(255, 255, 255, 0.12);
-    font-size: 27px; /* Размер букв */
+    font-size: 27px;
+    /* Размер букв */
     font-weight: bold;
     text-transform: uppercase;
     line-height: 0.9;
@@ -150,7 +165,7 @@ div {
 h1 {
     font-size: 3rem;
     margin: 50px 25px 20px;
-    
+
 }
 
 .h7 {
@@ -158,8 +173,8 @@ h1 {
     color: #333;
 }
 
-.h8{
-    
+.h8 {
+
     margin: 0 180px 20px;
     color: #333;
 }
@@ -168,6 +183,7 @@ h1 {
     margin: 0 100px 20px;
     color: #333;
 }
+
 .h1-button {
     display: inline-block;
     text-decoration: none;
@@ -178,7 +194,7 @@ h1 {
     padding: 18px 24px;
     backdrop-filter: blur(5px);
     transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); 
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
 
 .h1-button:hover,
@@ -195,23 +211,27 @@ p {
     font-weight: 600;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.35);
     letter-spacing: 0.5px;
-    
+
     /* Новая логика анимации */
     display: grid;
-    grid-template-rows: 1fr; /* Разрешаем занимать всё место */
+    grid-template-rows: 1fr;
+    /* Разрешаем занимать всё место */
     opacity: 1;
     transition: grid-template-rows 0.7s ease, opacity 0.5s ease, margin 0.5s ease;
-    overflow: visible; /* Убираем обрезку */
-    margin-top: 50px; /* Адекватный отступ от картинки */
-}
-.p3 {
-    margin: 450px 100px 20px;
-   
+    overflow: visible;
+    /* Убираем обрезку */
+    margin-top: 50px;
+    /* Адекватный отступ от картинки */
 }
 
-.p1{
+.p3 {
+    margin: 450px 100px 20px;
+
+}
+
+.p1 {
     margin: 450px 40px 0px;
-    
+
 }
 
 .p2 {
@@ -222,12 +242,15 @@ p {
 
 /* Скрытое состояние */
 p.hidden {
-    grid-template-rows: 0fr; /* Схлопываем в ноль */
+    grid-template-rows: 0fr;
+    /* Схлопываем в ноль */
     opacity: 0;
     margin-top: 0 !important;
     margin-bottom: 0 !important;
-    overflow: hidden; /* Обрезаем только когда скрыто */
+    overflow: hidden;
+    /* Обрезаем только когда скрыто */
 }
+
 .photos-img {
     cursor: pointer;
     transition: transform 0.2s ease;
@@ -259,13 +282,17 @@ p.hidden {
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     font-size: 14px;
 }
-.btn6:hover, .btn6:focus {
+
+.btn6:hover,
+.btn6:focus {
     transition: 0.3s ease-in-out;
-    background-color: rgba(255, 255, 255, 0.2); /* Slightly more opaque on hover */
+    background-color: rgba(255, 255, 255, 0.2);
+    /* Slightly more opaque on hover */
     color: rgb(0, 0, 0);
     border-color: rgba(255, 255, 255, 0.3);
     transform: scale(1.05);
-    backdrop-filter: blur(15px); /* Increase blur on hover */
+    backdrop-filter: blur(15px);
+    /* Increase blur on hover */
     -webkit-backdrop-filter: blur(15px);
 }
 
@@ -277,14 +304,14 @@ p.hidden {
     align-items: center;
     padding: 0 50px;
     margin-top: -650px;
-  
+
     animation: slideUp 1s ease-out;
-    
+
 }
 
 .photos {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); 
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     width: 100%;
     max-width: 1800px;
@@ -292,9 +319,10 @@ p.hidden {
 }
 
 .photos-img {
-       display: block;
+    display: block;
     width: 80%;
-    height: 350px; /* Можно немного увеличить высоту для красоты */
+    height: 350px;
+    /* Можно немного увеличить высоту для красоты */
     object-fit: cover;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -308,4 +336,45 @@ p.hidden {
     animation: slideUp 0.5s ease-out;
 }
 
+@media (max-width: 768px) {
+    /* Контейнер с фотографиями */
+    .photos {
+        display: flex;
+        flex-direction: column;
+        gap: 40px; /* Увеличим расстояние, чтобы текст влез */
+        padding: 120px 20px 50px;
+        align-items: flex-start; /* Фото слева */
+    }
 
+    .photos-img {
+        width: 120px !important;
+        height: 120px !important;
+        border-radius: 15px;
+        z-index: 5;
+    }
+
+    /* Общие стили для текстов p1, p2, p3 */
+    .p1, .p2, .p3 {
+        position: absolute; /* Включаем свободное перемещение */
+        left: 150px !important; /* Отступ вправо от края фото (120 + зазор) */
+        width: calc(100% - 170px) !important; /* Оставшееся место справа */
+        margin: 0 !important;
+        font-size: 16px !important;
+        line-height: 1.3;
+        color: white;
+        transition: opacity 0.5s ease, transform 0.5s ease !important;
+        pointer-events: none; /* Чтобы текст не мешал кликать */
+    }
+
+    /* Анимация появления */
+    p.hidden {
+        opacity: 0 !important;
+        transform: translateX(10px) !important;
+        display: block !important; /* Не используем none, иначе не будет анимации */
+    }
+}
+
+
+
+
+    
