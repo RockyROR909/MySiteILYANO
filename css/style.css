@@ -53,7 +53,7 @@ body.dark-mode::before {
 }
 
 article {
-    min-height: 1000px;
+    min-height: 1000px
 }
 
 
@@ -222,6 +222,10 @@ p {
     /* Убираем обрезку */
     margin-top: 50px;
     /* Адекватный отступ от картинки */
+    pointer-events: none;
+    /* Текст пропускает клики сквозь себя */
+    user-select: none;
+
 }
 
 .p3 {
@@ -242,6 +246,7 @@ p {
 
 /* Скрытое состояние */
 p.hidden {
+
     grid-template-rows: 0fr;
     /* Схлопываем в ноль */
     opacity: 0;
@@ -337,44 +342,102 @@ p.hidden {
 }
 
 @media (max-width: 768px) {
+ 
+
+
+
+
+    .content-column {
+        column-width: 20px
+    }
+
+    .h7,
+    .h8,
+    .h9 {
+        margin-bottom: 10px;
+
+    }
+
+
+    .horizontal-container {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        /* Группируем в центре */
+        gap: 10px !important;
+        /* Маленький зазор между словами */
+        width: 100% !important;
+        margin: 80px 0 20px 0 !important;
+        /* 80px сверху, 20px до фото */
+        padding: 0 !important;
+        height: auto !important;
+        position: relative !important;
+    }
+
+    /* Обнуляем колонки, чтобы они не расталкивали текст */
+    .content-column {
+        margin: 0 !important;
+        /* Убираем те самые 450px */
+        padding: 0 !important;
+        width: auto !important;
+        flex: none !important;
+    }
+
+    /* Сами кнопки: делаем их компактными */
+    .h1-button {
+        font-size: 18px !important;
+        /* Размер, чтобы всё влезло */
+        margin: 0 !important;
+        padding: 0 !important;
+        white-space: nowrap !important;
+        display: block !important;
+    }
+
     /* Контейнер с фотографиями */
     .photos {
         display: flex;
         flex-direction: column;
-        gap: 40px; /* Увеличим расстояние, чтобы текст влез */
-        padding: 120px 20px 50px;
-        align-items: flex-start; /* Фото слева */
+        gap: 50px;
+        /* Увеличим расстояние, чтобы текст влез */
+        padding: 0px 20px 50px;
+        align-items: flex-start;
+        /* Фото слева */
     }
 
     .photos-img {
-        width: 120px !important;
-        height: 120px !important;
+        width: 140px !important;
+        height: 140px !important;
         border-radius: 15px;
         z-index: 5;
     }
 
     /* Общие стили для текстов p1, p2, p3 */
-    .p1, .p2, .p3 {
-        position: absolute; /* Включаем свободное перемещение */
-        left: 150px !important; /* Отступ вправо от края фото (120 + зазор) */
-        width: calc(100% - 170px) !important; /* Оставшееся место справа */
+    .p1,
+    .p2,
+    .p3 {
+        position: absolute;
+        /* Включаем свободное перемещение */
+        left: 230px !important;
+        /* Отступ вправо от края фото (120 + зазор) */
+
+        width: calc(80% - 170px) !important;
+        /* Оставшееся место справа */
         margin: 0 !important;
         font-size: 16px !important;
         line-height: 1.3;
         color: white;
         transition: opacity 0.5s ease, transform 0.5s ease !important;
-        pointer-events: none; /* Чтобы текст не мешал кликать */
+        pointer-events: none;
+        /* Чтобы текст не мешал кликать */
     }
 
     /* Анимация появления */
     p.hidden {
         opacity: 0 !important;
         transform: translateX(10px) !important;
-        display: block !important; /* Не используем none, иначе не будет анимации */
+        display: block !important;
+        /* Не используем none, иначе не будет анимации */
     }
+
+
 }
-
-
-
-
-    

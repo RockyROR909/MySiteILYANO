@@ -15,8 +15,8 @@
 
 </head>
 
-<body>
-     <div class="background-overlay">
+<body >
+    <div class="background-overlay">
         <div class="scrolling-content">
             <span>ILOVEYOU ILOVEYOU ILOVEYOU ILOVEYOU ILOVEYOU ILOVEYOU ILOVEYOU ILOVEYOU ILOVEYOU ILOVEYOU ILOVEYOU
                 ILOVEYOU ILOVEYOU</span>
@@ -62,24 +62,25 @@
                 ILOVEYOU ILOVEYOU</span>
         </div>
     </div>
-<button class="theme-btn" onclick="toggleTheme()">
-    <!-- Солнце -->
-    <svg id="sun-icon" class="mode-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="12" r="5"></circle>
-        <line x1="12" y1="1" x2="12" y2="3"></line>
-        <line x1="12" y1="21" x2="12" y2="23"></line>
-        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-        <line x1="1" y1="12" x2="3" y2="12"></line>
-        <line x1="21" y1="12" x2="23" y2="12"></line>
-        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-    </svg>
-    <!-- Луна -->
-    <svg id="moon-icon" class="mode-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-    </svg>
-</button>
+    <button class="theme-btn" onclick="toggleTheme()">
+        <!-- Солнце -->
+        <svg id="sun-icon" class="mode-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <!-- Луна -->
+        <svg id="moon-icon" class="mode-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            style="display: none;">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+    </button>
     <div class="horizontal-container">
         <article class="content-column">
             <h1><a href="WhyYou.html" class="h1-button h7">ВМЕСТЕ</a></h1>
@@ -117,26 +118,30 @@
             p.classList.add('hidden');
         });
 
-        // Связываем фото с текстом
-        const pairs = [
-            { imageIndex: 0, paragraph: '.p1' },
-            { imageIndex: 1, paragraph: '.p2' },
-            { imageIndex: 2, paragraph: '.p3' }
-        ];
-
         const images = document.querySelectorAll('.photos-img');
 
-        pairs.forEach(pair => {
-            const imageElement = images[pair.imageIndex];
-            const paragraphElement = document.querySelector(pair.paragraph);
+// Настраиваем индивидуальные смещения для мобилок (в пикселях)
+const pairs = [
+    { imageIndex: 0, paragraph: '.p1', mobileOffset: 15}, 
+    { imageIndex: 1, paragraph: '.p2', mobileOffset: 22}, 
+    { imageIndex: 2, paragraph: '.p3', mobileOffset: 17}
+];
 
-            if (imageElement && paragraphElement) {
+pairs.forEach(pair => {
+    const imageElement = images[pair.imageIndex];
+    const paragraphElement = document.querySelector(pair.paragraph);
+
+    if (imageElement && paragraphElement) {
         imageElement.addEventListener('click', function () {
-            // ТОЛЬКО ДЛЯ МОБИЛОК: выравниваем текст по высоте картинки
+            
+            // ПРОВЕРКА: Если ширина экрана меньше или равна 768px (мобилки)
             if (window.innerWidth <= 768) {
-                // Берем координаты картинки и передаем их тексту
                 const topPos = imageElement.offsetTop;
-                paragraphElement.style.top = topPos + "px";
+                // Применяем индивидуальное смещение
+                paragraphElement.style.top = (topPos + pair.mobileOffset) + "px";
+            } else {
+                // Если мы на ПК, удаляем инлайновый стиль top, чтобы работал основной CSS
+                paragraphElement.style.top = "";
             }
             
             paragraphElement.classList.toggle('hidden');
@@ -144,48 +149,57 @@
     }
 });
 
-            function toggleTheme() {
-      const body = document.body;
-      const sun = document.getElementById('sun-icon');
-      const moon = document.getElementById('moon-icon');
-
-      body.classList.toggle('dark-mode');
-
-      // Сохраняем выбор пользователя
-      if (body.classList.contains('dark-mode')) {
-        localStorage.setItem('theme', 'dark');
-        if (sun) sun.style.display = 'none';
-        if (moon) moon.style.display = 'block';
-      } else {
-        localStorage.setItem('theme', 'light');
-        if (sun) sun.style.display = 'block';
-        if (moon) moon.style.display = 'none';
-      }
-    }
-    
-
-    // ПРОВЕРКА ПРИ ЗАГРУЗКЕ (чтобы тема не моргала)
-    (function() {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        // Добавляем класс, который отключает анимацию
-        document.body.classList.add('no-transition');
-        document.body.classList.add('dark-mode');
-
-        window.addEventListener('DOMContentLoaded', () => {
-            const sun = document.getElementById('sun-icon');
-            const moon = document.getElementById('moon-icon');
-            if(sun) sun.style.display = 'none';
-            if(moon) moon.style.display = 'block';
-
-            // Ждем крошечное мгновение и возвращаем анимацию обратно
-            // Теперь при клике на кнопку она будет работать, а при загрузке — нет
-            setTimeout(() => {
-                document.body.classList.remove('no-transition');
-            }, 100);
+// Дополнительно: сброс позиций при изменении размера окна (на случай поворота экрана)
+window.addEventListener('resize', function() {
+    if (window.innerWidth > 768) {
+        document.querySelectorAll('.p1, .p2, .p3').forEach(p => {
+            p.style.top = "";
         });
     }
-})();
+});
+
+        function toggleTheme() {
+            const body = document.body;
+            const sun = document.getElementById('sun-icon');
+            const moon = document.getElementById('moon-icon');
+
+            body.classList.toggle('dark-mode');
+
+            // Сохраняем выбор пользователя
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                if (sun) sun.style.display = 'none';
+                if (moon) moon.style.display = 'block';
+            } else {
+                localStorage.setItem('theme', 'light');
+                if (sun) sun.style.display = 'block';
+                if (moon) moon.style.display = 'none';
+            }
+        }
+
+
+        // ПРОВЕРКА ПРИ ЗАГРУЗКЕ (чтобы тема не моргала)
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                // Добавляем класс, который отключает анимацию
+                document.body.classList.add('no-transition');
+                document.body.classList.add('dark-mode');
+
+                window.addEventListener('DOMContentLoaded', () => {
+                    const sun = document.getElementById('sun-icon');
+                    const moon = document.getElementById('moon-icon');
+                    if (sun) sun.style.display = 'none';
+                    if (moon) moon.style.display = 'block';
+
+                    // Ждем крошечное мгновение и возвращаем анимацию обратно
+                    // Теперь при клике на кнопку она будет работать, а при загрузке — нет
+                    setTimeout(() => {
+                        document.body.classList.remove('no-transition');
+                    }, 100);
+                });
+            }
+        })();
     </script>
 </body>
 

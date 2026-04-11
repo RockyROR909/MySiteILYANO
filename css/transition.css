@@ -299,6 +299,8 @@ body.dark-mode .mode-icon {
     -webkit-backdrop-filter: blur(15px);
 }
 
+
+
 .profile-container {
     display: flex;
     flex-direction: column;
@@ -307,8 +309,10 @@ body.dark-mode .mode-icon {
     animation: slideUp 0.8s ease;
 }
 
+
 @keyframes slideUp {
     from {
+
         opacity: 0;
         transform: translateY(30px);
     }
@@ -557,9 +561,9 @@ footer a:hover {
 @media (max-width: 768px) {
     /* ЛЕВАЯ ПАНЕЛЬ (Музыка) */
     .left-sidebar {
-        width: 85vw !important;
+        width: 60vw !important;
         /* Мы прячем панель на её ширину (85vw) + запас на padding (обычно 10-20px) */
-        left: calc(-85vw - 20px) !important; 
+        left: calc(-60vw - 20px) !important; 
         right: auto !important;
         padding: 10px !important; /* Убедитесь, что padding фиксирован */
         transition: left 0.5s ease !important;
@@ -585,8 +589,8 @@ footer a:hover {
 
     /* ПРАВАЯ ПАНЕЛЬ (Скетчфаб) — переделываем только на right */
     .right-sidebar {
-        width: 85vw !important;
-        right: -85vw !important; 
+        width: 60vw !important;
+        right: -60vw !important; 
         left: auto !important; /* Убираем конфликт с left */
         padding: 0 !important;
         transition: right 0.5s ease !important; /* Плавность здесь! */
