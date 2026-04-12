@@ -376,7 +376,8 @@ p.hidden {
         justify-content: center !important;
         gap: 8px !important;
         margin-top: 100px !important;
-        height: auto !important; /* Убираем ограничение высоты */
+        height: auto !important;
+        /* Убираем ограничение высоты */
         overflow: visible !important;
     }
 
@@ -437,7 +438,7 @@ p.hidden {
     .p1,
     .p2,
     .p3 {
-        position: absolute;
+        position: absolute !important;
         /* Включаем свободное перемещение */
         left: 230px !important;
         /* Отступ вправо от края фото (120 + зазор) */
@@ -445,6 +446,8 @@ p.hidden {
         width: calc(80% - 170px) !important;
         /* Оставшееся место справа */
         margin: 0 !important;
+        padding: 0 !important;
+        text-align: left !important;
         font-size: 16px !important;
         line-height: 1.3;
         color: white;

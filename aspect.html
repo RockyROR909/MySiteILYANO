@@ -134,13 +134,20 @@ pairs.forEach(pair => {
     const imageElement = images[pair.imageIndex];
     const paragraphElement = document.querySelector(pair.paragraph);
 
-    // Safari очень капризен: проверяем существование ОБОИХ элементов
     if (imageElement && paragraphElement) {
         imageElement.addEventListener('click', function () {
             if (window.innerWidth <= 768) {
-                const topPos = imageElement.offsetTop;
-                // Используем Math.round для Safari
-                paragraphElement.style.top = Math.round(topPos + pair.mobileOffset) + "px";
+                // getBoundingClientRect дает более точные координаты в Safari
+                const rect = imageElement.getBoundingClientRect();
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                // Вычисляем позицию относительно начала страницы
+                const absoluteTop = rect.top + scrollTop;
+                
+                paragraphElement.style.top = Math.round(absoluteTop + pair.mobileOffset) + "px";
+                
+                // Принудительно фиксируем левый отступ для всех одинаково
+                paragraphElement.style.left = "230px"; 
             }
             paragraphElement.classList.toggle('hidden');
         });
