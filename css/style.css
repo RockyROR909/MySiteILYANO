@@ -1,6 +1,3 @@
-
-
-
 body {
     margin: 0;
     padding: 0;
@@ -56,8 +53,8 @@ body.dark-mode::before {
 }
 
 .content-column {
-        min-height: 1000px;
-    }
+    min-height: 1000px;
+}
 
 
 
@@ -353,7 +350,7 @@ p.hidden {
 
     .photos-container {
         margin-top: -700px;
-      
+
     }
 
 
@@ -376,34 +373,46 @@ p.hidden {
         display: flex !important;
         flex-direction: row !important;
         justify-content: center !important;
-        /* Группируем в центре */
+        /* Группируем по центру */
         gap: 10px !important;
-        /* Маленький зазор между словами */
+        /* Небольшой зазор между ними */
         width: 100% !important;
-        margin: 80px 0 20px 0 !important;
-        /* 80px сверху, 20px до фото */
-        padding: 0 !important;
-        height: auto !important;
-        position: relative !important;
+        padding: 10px 5px !important;
+        /* Чтобы не прилипали к краям экрана */
+
+        overflow: visible !important;
     }
 
-    /* Обнуляем колонки, чтобы они не расталкивали текст */
+    /* Сами колонки: запрещаем им сжиматься в полоску */
     .content-column {
+        flex: 0 1 auto !important;
+        /* Блок занимает ровно столько места, сколько нужно тексту */
+        min-width: 80px !important;
+        /* Минимальная ширина, чтобы не сжимались */
+        border: none !important;
+        /* Убираем те самые вертикальные полоски */
         margin: 0 !important;
-        /* Убираем те самые 450px */
         padding: 0 !important;
-        width: auto !important;
-        flex: none !important;
+        overflow: visible !important;
     }
 
-    /* Сами кнопки: делаем их компактными */
+    /* Оформление самих кнопок (подложка) */
     .h1-button {
-        font-size: 18px !important;
-        /* Размер, чтобы всё влезло */
-        margin: 0 !important;
-        padding: 0 !important;
+        font-size: 14px !important;
+        /* Чуть меньше шрифт, чтобы всё влезло в ряд */
+        display: inline-block !important;
+
+        margin: 0;
+        padding: 8px 12px !important;
+        /* Внутренние отступы для формы кнопки */
+        background: rgba(255, 255, 255, 0.1);
+        /* Полупрозрачный фон */
+        backdrop-filter: blur(5px);
+        border-radius: 8px;
+        /* Скругление углов подложки */
         white-space: nowrap !important;
-        display: block !important;
+        /* Запрещаем перенос букв */
+        text-align: center;
     }
 
     /* Контейнер с фотографиями */
