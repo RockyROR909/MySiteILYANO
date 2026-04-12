@@ -439,10 +439,10 @@ p.hidden {
     .p3 {
         position: absolute;
         /* Включаем свободное перемещение */
-        left: 230px !important;
-        /* Отступ вправо от края фото (120 + зазор) */
-
-        width: calc(80% - 170px) !important;
+        left: 115px !important; 
+        
+        /* Текст должен занимать ВСЁ свободное место справа */
+        width: calc(100% - 135px) !important; 
         /* Оставшееся место справа */
         margin: 0 !important;
         font-size: 16px !important;
