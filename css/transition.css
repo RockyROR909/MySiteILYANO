@@ -559,6 +559,23 @@ footer a:hover {
 
 
 @media (max-width: 768px) {
+
+
+
+    /* Gallery Styles */
+.gallery-container {
+        /* Обнуляем отрицательный отступ с ПК версии */
+        margin-top: -850px !important; 
+        
+        /* Делаем отступ от верхних кнопок (Назад/Тема), чтобы не было наезда */
+        padding-top: 100px !important; 
+        
+        /* Центрируем и выстраиваем в колонку, если нужно */
+        flex-direction: column;
+        padding-bottom: 40px;
+    }
+
+
     /* ЛЕВАЯ ПАНЕЛЬ (Музыка) */
     .left-sidebar {
         width: 60vw !important;

@@ -1,3 +1,6 @@
+
+
+
 body {
     margin: 0;
     padding: 0;
@@ -6,7 +9,7 @@ body {
     background: linear-gradient(135deg, #e666ea 0%, #f0ed56 100%) !important;
     background-attachment: fixed;
     font-family: sans-serif;
-    overflow-x: hidden;
+    overflow-x: hidden !important;
     position: relative;
 }
 
@@ -52,9 +55,9 @@ body.dark-mode::before {
     opacity: 1;
 }
 
-article {
-    min-height: 1000px
-}
+.content-column {
+        min-height: 1000px;
+    }
 
 
 
@@ -342,7 +345,17 @@ p.hidden {
 }
 
 @media (max-width: 768px) {
- 
+
+    .content-column {
+        min-height: 100vh;
+    }
+
+
+    .photos-container {
+        margin-top: -700px;
+      
+    }
+
 
 
 
