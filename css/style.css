@@ -369,17 +369,14 @@ p.hidden {
     }
 
 
+    /* ИСПРАВЛЯЕМ КНОПКИ (H7, H8, H9) */
     .horizontal-container {
         display: flex !important;
         flex-direction: row !important;
         justify-content: center !important;
-        /* Группируем по центру */
-        gap: 10px !important;
-        /* Небольшой зазор между ними */
-        width: 100% !important;
-        padding: 10px 5px !important;
-        /* Чтобы не прилипали к краям экрана */
-
+        gap: 8px !important;
+        margin-top: 100px !important;
+        height: auto !important; /* Убираем ограничение высоты */
         overflow: visible !important;
     }
 
@@ -394,6 +391,7 @@ p.hidden {
         margin: 0 !important;
         padding: 0 !important;
         overflow: visible !important;
+
     }
 
     /* Оформление самих кнопок (подложка) */
@@ -407,6 +405,8 @@ p.hidden {
         /* Внутренние отступы для формы кнопки */
         background: rgba(255, 255, 255, 0.1);
         /* Полупрозрачный фон */
+        -webkit-backdrop-filter: blur(5px);
+        /* ОБЯЗАТЕЛЬНО для Safari */
         backdrop-filter: blur(5px);
         border-radius: 8px;
         /* Скругление углов подложки */
@@ -439,10 +439,10 @@ p.hidden {
     .p3 {
         position: absolute;
         /* Включаем свободное перемещение */
-        left: 115px !important; 
-        
-        /* Текст должен занимать ВСЁ свободное место справа */
-        width: calc(100% - 135px) !important; 
+        left: 230px !important;
+        /* Отступ вправо от края фото (120 + зазор) */
+
+        width: calc(80% - 170px) !important;
         /* Оставшееся место справа */
         margin: 0 !important;
         font-size: 16px !important;
@@ -455,6 +455,7 @@ p.hidden {
 
     /* Анимация появления */
     p.hidden {
+
         opacity: 0 !important;
         transform: translateX(10px) !important;
         display: block !important;

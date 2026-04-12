@@ -102,11 +102,14 @@
         <a href="index.html" class="btn6">← Назад</a>
     </nav>
 
+    
+
 
 
     <div class="photos-container">
         <div class="photos">
             <img src="img/5.jpg" alt="photos-img" class="photos-img">
+            
             <img src="img/rU_qsoSICBG7rKJVyXhEyeUH-uoJQ9I8Dm6SEkGzXZ69TuqE12qZpOW-XPeQ38clfiwE0M5vNHNSXHSfDD2Wbq9L.jpg"
                 alt="photos-img" class="photos-img">
             <img src="img/3.jpg" alt="photos-img" class="photos-img">
@@ -131,32 +134,20 @@ pairs.forEach(pair => {
     const imageElement = images[pair.imageIndex];
     const paragraphElement = document.querySelector(pair.paragraph);
 
+    // Safari очень капризен: проверяем существование ОБОИХ элементов
     if (imageElement && paragraphElement) {
         imageElement.addEventListener('click', function () {
-            
-            // ПРОВЕРКА: Если ширина экрана меньше или равна 768px (мобилки)
             if (window.innerWidth <= 768) {
                 const topPos = imageElement.offsetTop;
-                // Применяем индивидуальное смещение
-                paragraphElement.style.top = (topPos + pair.mobileOffset) + "px";
-            } else {
-                // Если мы на ПК, удаляем инлайновый стиль top, чтобы работал основной CSS
-                paragraphElement.style.top = "";
+                // Используем Math.round для Safari
+                paragraphElement.style.top = Math.round(topPos + pair.mobileOffset) + "px";
             }
-            
             paragraphElement.classList.toggle('hidden');
         });
     }
 });
 
-// Дополнительно: сброс позиций при изменении размера окна (на случай поворота экрана)
-window.addEventListener('resize', function() {
-    if (window.innerWidth > 768) {
-        document.querySelectorAll('.p1, .p2, .p3').forEach(p => {
-            p.style.top = "";
-        });
-    }
-});
+
 
         function toggleTheme() {
             const body = document.body;
